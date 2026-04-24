@@ -85,6 +85,18 @@ body {
 }
 
 
+#home.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('assets/turkana-1.jpeg'); /* This is your new image! */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Optional: gives a cool parallax effect */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    color: white; /* Make sure text is white so it's readable */
+}
+
 
 .btn.primary { 
     background: var(--main-color); 
