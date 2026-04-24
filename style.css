@@ -1,8 +1,9 @@
 :root {
-    --bg-color: #0f172a;
-    --second-bg: #1e293b;
-    --text-color: #f8fafc;
-    --main-color: #38bdf8;
+    --bg-color: #0f172a;      
+    --second-bg: #1e293b;      
+    --text-color: #f8fafc;     
+    --main-color: #f97316;     
+    --accent-color: #fb923c;   
 }
 
 * {
@@ -48,8 +49,24 @@ body {
     transition: 0.3s; margin-right: 1rem;
 }
 
-.btn.primary { background: var(--main-color); color: var(--bg-color); font-weight: bold; }
-.btn.secondary { border: 2px solid var(--main-color); color: var(--main-color); }
+
+
+.btn.primary { 
+    background: var(--main-color); 
+    color: white; 
+    font-weight: bold; 
+    border: none;
+}
+
+.btn.primary:hover {
+    background: var(--accent-color);
+    box-shadow: 0 5px 15px rgba(249, 115, 22, 0.4);
+}
+
+.btn.secondary { 
+    border: 2px solid var(--main-color); 
+    color: var(--main-color); 
+}
 
 .btn:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(56, 189, 248, 0.4); }
 
