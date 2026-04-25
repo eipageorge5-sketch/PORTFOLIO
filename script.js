@@ -36,6 +36,24 @@ contactForm.addEventListener('submit', (e) => {
     }
 });
 
+
+function openCodeModal() {
+    document.getElementById("codeModal").style.display = "block";
+}
+
+function closeCodeModal() {
+    document.getElementById("codeModal").style.display = "none";
+}
+
+// Close the modal if the user clicks anywhere outside of it
+window.onclick = function(event) {
+    let modal = document.getElementById("codeModal");
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+
 // Smooth Scrolling for all links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
