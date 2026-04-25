@@ -148,12 +148,15 @@
     <section id="contact" class="contact">
         <h2 class="section-title">Get In Touch</h2>
         <div class="contact-container">
-            <form id="contact-form">
-                <input type="text" placeholder="Name" required>
-                <input type="email" placeholder="Email" required>
-                <textarea placeholder="Your Message" rows="5" required></textarea>
-                <button type="submit" class="btn primary">Send Message</button>
-            </form>
+           <form action="https://formspree.io/f/meevndwp" method="POST">
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            
+            <input type="hidden" name="_next" value="https://eipageorge5-sketch.github.io/index.html">
+            
+            <button type="submit" class="btn primary">Send Message</button>
+        </form>
             <div class="contact-info">
                 <p><i class="fas fa-map-marker-alt"></i> Kenya</p>
                 <div class="socials">
