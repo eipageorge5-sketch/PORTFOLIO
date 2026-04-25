@@ -109,22 +109,40 @@
         </div>
 
         <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="project-img" style="background: linear-gradient(45deg, #3776ab, #ffde57); height: 150px; display: flex; align-items: center; justify-content: center; border-radius: 10px; margin-bottom: 1rem;">
-                <i class="fab fa-python" style="font-size: 4rem; color: white;"></i>
-            </div>
-            <div class="project-info">
-                <h3>Logic & Algorithms</h3>
-                <p>Early-stage Python scripts developed through the Power Learn Project to solve daily automation tasks.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">Logic</span>
-                </div>
-                <div class="proj-links">
-                    <a href="#" class="btn-link">Live Demo</a>
-                    <a href="https://github.com/eipageorge5-sketch" target="_blank" class="btn-link"><i class="fab fa-github"></i> GitHub</a>
-                </div>
-            </div>
+    <div class="project-img" style="background: linear-gradient(45deg, #3776ab, #ffde57); height: 150px; display: flex; align-items: center; justify-content: center; border-radius: 10px; margin-bottom: 1rem;">
+        <i class="fab fa-python" style="font-size: 4rem; color: white;"></i>
+    </div>
+    <div class="project-info">
+        <h3>Logic & Algorithms</h3>
+        <p>Early-stage Python scripts developed through the Power Learn Project to solve daily automation tasks.</p>
+        <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Automation</span>
         </div>
+        <div class="proj-links">
+            <button onclick="openCodeModal()" class="btn primary" style="padding: 5px 15px; font-size: 0.8rem;">View Logic</button>
+            <a href="https://github.com/eipageorge5-sketch" target="_blank" class="btn-link"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+    </div>
+</div>
+
+<div id="codeModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeCodeModal()">&times;</span>
+        <h3 style="color: #3776ab;">Python Logic Showcase</h3>
+        <p style="font-size: 0.9rem; margin-bottom: 10px;">A snippet from my Power Learn Project assignments:</p>
+        <pre><code>
+def calculate_growth(initial_val, rate):
+    # Logic for documenting community resilience
+    return initial_val * (1 + rate)
+
+# Turkana Project Data Automation
+turkana_data = [120, 150, 180]
+updated_metrics = [calculate_growth(x, 0.05) for x in turkana_data]
+print(f"Projected Growth: {updated_metrics}")
+        </code></pre>
+    </div>
+</div>
 
     </div>
 </section>
