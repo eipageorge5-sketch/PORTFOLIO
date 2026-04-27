@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dev Portfolio | Senior Vision</title>
+    <title>George Eipa | Developer Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -12,8 +12,8 @@
 
     <nav class="navbar">
         <div class="logo">
-        <img src="assets/logo.png" alt="George Logo" class="nav-logo">
-     </div>
+            <img src="assets/logo.png" alt="George Logo" class="nav-logo">
+        </div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -55,131 +55,92 @@
         </div>
     </section>
 
-    <section id="skills" class="skills">
-        <h2 class="section-title">Technical Skills</h2>
-        <div class="skills-container" data-aos="zoom-in">
-            <div class="skill-box"><span>HTML</span><div class="bar"><div class="progress html"></div></div></div>
-            <div class="skill-box"><span>CSS/Responsive</span><div class="bar"><div class="progress css"></div></div></div>
-            <div class="skill-box"><span>JavaScript</span><div class="bar"><div class="progress js"></div></div></div>
-            <div class="skill-box"><span>Git/GitHub</span><div class="bar"><div class="progress git"></div></div></div>
-            <div class="skill-box"><span>Python (Learning)</span><div class="bar"><div class="progress python"></div></div></div>
+    <section id="projects" class="projects">
+        <h2 class="section-title" data-aos="fade-up">Featured Projects</h2>
+        <div class="project-grid">
+            
+            <div class="project-card" data-aos="fade-up">
+                <div class="project-img">
+                    <img src="assets/turkana-1.jpeg" alt="The Spirit of Turkana" style="width: 100%; height: 150px; object-fit: cover; border-radius: 10px;">
+                </div>
+                <div class="project-info">
+                    <h3>The Spirit of Turkana</h3>
+                    <p>A digital documentary preserving heritage through code and cinematic storytelling.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">UX Design</span>
+                    </div>
+                    <div class="proj-links">
+                        <a href="spirit-of-turkana/index.html" class="btn primary">View Experience</a>
+                        <a href="https://github.com/eipageorge5-sketch" target="_blank" class="btn-link"><i class="fab fa-github"></i> Source</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="project-img" style="background: #1e293b; border: 2px dashed var(--main-color); height: 150px; display: flex; align-items: center; justify-content: center; border-radius: 10px; margin-bottom: 1rem;">
+                    <i class="fas fa-folder-open" style="font-size: 3rem; color: var(--main-color);"></i>
+                </div>
+                <div class="project-info">
+                    <h3>GitHub Portfolio Manager</h3>
+                    <p>A clean organizational structure for managing image assets across multiple repositories.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Git</span>
+                        <span class="tech-tag">Markdown</span>
+                    </div>
+                    <div class="proj-links">
+                        <a href="https://github.com/eipageorge5-sketch?tab=repositories" target="_blank" class="btn primary" style="padding: 5px 15px; font-size: 0.8rem;">View Repos</a>
+                        <a href="https://github.com/eipageorge5-sketch" target="_blank" class="btn-link"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="project-img" style="background: linear-gradient(45deg, #3776ab, #ffde57); height: 150px; display: flex; align-items: center; justify-content: center; border-radius: 10px; margin-bottom: 1rem;">
+                    <i class="fab fa-python" style="font-size: 4rem; color: white;"></i>
+                </div>
+                <div class="project-info">
+                    <h3>Logic & Algorithms</h3>
+                    <p>Early-stage Python scripts developed to solve automation tasks and data processing.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Automation</span>
+                    </div>
+                    <div class="proj-links">
+                        <button onclick="openCodeModal()" class="btn primary" style="padding: 5px 15px; font-size: 0.8rem;">View Logic</button>
+                        <a href="https://github.com/eipageorge5-sketch" target="_blank" class="btn-link"><i class="fab fa-github"></i> GitHub</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    
-    <section id="projects" class="projects">
-    <h2 class="section-title" data-aos="fade-up">Featured Projects</h2>
-    <div class="project-grid">
-        
-        <div class="project-card" data-aos="fade-up">
-            <div class="project-img">
-                <img src="assets/assets:turkana-1.jpeg" alt="The Spirit of Turkana" style="width: 100%; height: 150px; object-fit: cover; border-radius: 10px;">
-            </div>
-            <div class="project-info">
-                <h3>The Spirit of Turkana</h3>
-                <p>A documentary-style web experience highlighting the culture and resilience of East African communities.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">HTML5</span>
-                    <span class="tech-tag">CSS3</span>
-                    <span class="tech-tag">UX Design</span>
-                </div>
-                <div class="proj-links">
-                    <a href="gallery.html" class="btn primary">View Gallery</a>
-                    <a href="https://github.com/eipageorge5-sketch" target="_blank" class="btn-link"><i class="fab fa-github"></i> Source</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="project-img" style="background: #1e293b; border: 2px dashed var(--main-orange); height: 150px; display: flex; align-items: center; justify-content: center; border-radius: 10px; margin-bottom: 1rem;">
-                <i class="fas fa-folder-open" style="font-size: 3rem; color: var(--main-orange);"></i>
-            </div>
-            <div class="project-info">
-                <h3>GitHub Portfolio Manager</h3>
-                <p>A clean organizational structure for managing image assets and documentation across multiple repositories.</p>
-                <div class="tech-stack">
-                    <span class="tech-tag">Git</span>
-                    <span class="tech-tag">Markdown</span>
-                </div>
-                <div class="proj-links">
-                    <a href="#" class="btn-link">Live Demo</a>
-                    <a href="https://github.com/eipageorge5-sketch" target="_blank" class="btn-link"><i class="fab fa-github"></i> GitHub</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-    <div class="project-img" style="background: linear-gradient(45deg, #3776ab, #ffde57); height: 150px; display: flex; align-items: center; justify-content: center; border-radius: 10px; margin-bottom: 1rem;">
-        <i class="fab fa-python" style="font-size: 4rem; color: white;"></i>
-    </div>
-    <div class="project-info">
-        <h3>Logic & Algorithms</h3>
-        <p>Early-stage Python scripts developed through the Power Learn Project to solve daily automation tasks.</p>
-        <div class="tech-stack">
-            <span class="tech-tag">Python</span>
-            <span class="tech-tag">Automation</span>
-        </div>
-        <div class="proj-links">
-            <button onclick="openCodeModal()" class="btn primary" style="padding: 5px 15px; font-size: 0.8rem;">View Logic</button>
-            <a href="https://github.com/eipageorge5-sketch" target="_blank" class="btn-link"><i class="fab fa-github"></i> GitHub</a>
-        </div>
-    </div>
-</div>
-
-<div id="codeModal" class="modal">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeCodeModal()">&times;</span>
-        <h3 style="color: #3776ab;">Python Logic Showcase</h3>
-        <p style="font-size: 0.9rem; margin-bottom: 10px;">A snippet from my Power Learn Project assignments:</p>
-        <pre><code>
+    <div id="codeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeCodeModal()">&times;</span>
+            <h3 style="color: #38bdf8;">Python Logic Showcase</h3>
+            <pre><code>
 def calculate_growth(initial_val, rate):
-    # Logic for documenting community resilience
     return initial_val * (1 + rate)
 
-# Turkana Project Data Automation
+# Project Data Automation
 turkana_data = [120, 150, 180]
 updated_metrics = [calculate_growth(x, 0.05) for x in turkana_data]
 print(f"Projected Growth: {updated_metrics}")
-        </code></pre>
-    </div>
-</div>
-
-    </div>
-</section>
-
-    <section class="timeline-section">
-        <h2 class="section-title">Learning Journey</h2>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="date">2026</div>
-                <h4>Power Learn Project</h4>
-                <p>Advanced Python Development (Ongoing)</p>
-            </div>
-            <div class="timeline-item">
-                <div class="date">2025</div>
-                <h4>freeCodeCamp</h4>
-                <p>Responsive Web Design Certification</p>
-            </div>
-            <div class="timeline-item">
-                <div class="date">2024</div>
-                <h4>Mobile Leap Program</h4>
-                <p>Foundation of Mobile and Web Tech</p>
-            </div>
+            </code></pre>
         </div>
-    </section>
+    </div>
 
     <section id="contact" class="contact">
         <h2 class="section-title">Get In Touch</h2>
         <div class="contact-container">
-           <form action="https://formspree.io/f/meevndwp" method="POST">
-            <input type="text" name="name" placeholder="Name" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-            
-            <input type="hidden" name="_next" value="https://eipageorge5-sketch.github.io/index.html">
-            
-            <button type="submit" class="btn primary">Send Message</button>
-        </form>
+            <form action="https://formspree.io/f/meevndwp" method="POST">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit" class="btn primary">Send Message</button>
+            </form>
             <div class="contact-info">
                 <p><i class="fas fa-map-marker-alt"></i> Kenya</p>
                 <div class="socials">
