@@ -55,6 +55,17 @@
         </div>
     </section>
 
+    <section id="skills" class="skills">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="skills-container" data-aos="zoom-in">
+            <div class="skill-box"><span>HTML</span><div class="bar"><div class="progress html"></div></div></div>
+            <div class="skill-box"><span>CSS/Responsive</span><div class="bar"><div class="progress css"></div></div></div>
+            <div class="skill-box"><span>JavaScript</span><div class="bar"><div class="progress js"></div></div></div>
+            <div class="skill-box"><span>Git/GitHub</span><div class="bar"><div class="progress git"></div></div></div>
+            <div class="skill-box"><span>Python (Learning)</span><div class="bar"><div class="progress python"></div></div></div>
+        </div>
+    </section>
+
     <section id="projects" class="projects">
         <h2 class="section-title" data-aos="fade-up">Featured Projects</h2>
         <div class="project-grid">
@@ -102,7 +113,7 @@
                 </div>
                 <div class="project-info">
                     <h3>Logic & Algorithms</h3>
-                    <p>Early-stage Python scripts developed to solve automation tasks and data processing.</p>
+                    <p>Python scripts developed to solve automation tasks and data processing.</p>
                     <div class="tech-stack">
                         <span class="tech-tag">Python</span>
                         <span class="tech-tag">Automation</span>
@@ -116,21 +127,26 @@
         </div>
     </section>
 
-    <div id="codeModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeCodeModal()">&times;</span>
-            <h3 style="color: #38bdf8;">Python Logic Showcase</h3>
-            <pre><code>
-def calculate_growth(initial_val, rate):
-    return initial_val * (1 + rate)
-
-# Project Data Automation
-turkana_data = [120, 150, 180]
-updated_metrics = [calculate_growth(x, 0.05) for x in turkana_data]
-print(f"Projected Growth: {updated_metrics}")
-            </code></pre>
+    <section class="timeline-section">
+        <h2 class="section-title">Learning Journey</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="date">2026</div>
+                <h4>Power Learn Project</h4>
+                <p>Advanced Python Development (Ongoing)</p>
+            </div>
+            <div class="timeline-item">
+                <div class="date">2025</div>
+                <h4>freeCodeCamp</h4>
+                <p>Responsive Web Design Certification</p>
+            </div>
+            <div class="timeline-item">
+                <div class="date">2024</div>
+                <h4>Mobile Leap Program</h4>
+                <p>Foundation of Mobile and Web Tech</p>
+            </div>
         </div>
-    </div>
+    </section>
 
     <section id="contact" class="contact">
         <h2 class="section-title">Get In Touch</h2>
@@ -151,6 +167,22 @@ print(f"Projected Growth: {updated_metrics}")
             </div>
         </div>
     </section>
+
+    <div id="codeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeCodeModal()">&times;</span>
+            <h3 style="color: #38bdf8;">Python Logic Showcase</h3>
+            <pre><code>
+def calculate_growth(initial_val, rate):
+    return initial_val * (1 + rate)
+
+# Project Data Automation
+turkana_data = [120, 150, 180]
+updated_metrics = [calculate_growth(x, 0.05) for x in turkana_data]
+print(f"Projected Growth: {updated_metrics}")
+            </code></pre>
+        </div>
+    </div>
 
     <footer>
         <p>&copy; 2026 George Portfolio. Built with passion in Kenya.</p>
