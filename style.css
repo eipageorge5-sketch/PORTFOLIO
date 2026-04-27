@@ -64,6 +64,31 @@ body {
     border-bottom: 3px solid var(--main-color);
 }
 
+
+.category-tag {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--main-color);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.project-info p {
+    font-size: 0.85rem;
+    color: #cbd5e1;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.project-info strong {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+
+
 /* --- SKILLS --- */
 .skills-container { max-width: 800px; margin: auto; padding: 4rem 10%; }
 .skill-box { margin-bottom: 1.5rem; }
