@@ -1,234 +1,1176 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>George Eipa | Developer Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>George Moruita Eipa | Full-Stack Software Engineer</title>
+  <meta name="description" content="Full-Stack Software Engineer building scalable SaaS platforms, RESTful APIs, and high-performance web applications. Based in Kenya." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="George Moruita Eipa | Full-Stack Software Engineer" />
+  <meta property="og:description" content="Building scalable SaaS platforms, RESTful APIs, and high-performance web applications. Based in Kenya." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://eipageorge5-sketch.github.io/" />
+  <meta property="og:image" content="assets/turkana-1.jpeg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+  <!-- Typed.js & AOS -->
+  <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js" defer></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS
+       ============================================================ */
+    :root {
+      --bg-base:      #0a0f1a;
+      --bg-surface:   #0f172a;
+      --bg-card:      #1a2235;
+      --border:       rgba(255,255,255,0.07);
+      --text-primary: #f8fafc;
+      --text-muted:   #94a3b8;
+      --orange:       #f97316;
+      --orange-light: #fb923c;
+      --orange-dim:   rgba(249,115,22,0.12);
+      --orange-glow:  rgba(249,115,22,0.3);
+      --font-display: 'Syne', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg-base);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Noise texture */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    }
+
+    /* ── Typography ── */
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      letter-spacing: -0.02em;
+    }
+
+    .highlight { color: var(--orange); }
+
+    /* ── Navbar ── */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+      background: rgba(10,15,26,0.85);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo { height: 42px; width: auto; }
+
+    .nav-links {
+      display: flex; list-style: none; gap: 2rem;
+    }
+    .nav-links a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: 0.9rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--orange); }
+
+    .nav-cta {
+      background: var(--orange); color: #fff !important;
+      padding: 8px 20px; border-radius: 8px;
+      font-family: var(--font-display); font-weight: 700 !important;
+      font-size: 0.85rem !important;
+      transition: box-shadow 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover {
+      color: #fff !important;
+      box-shadow: 0 0 24px var(--orange-glow) !important;
+      transform: translateY(-1px);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; z-index: 101;
+    }
+    .hbar {
+      width: 24px; height: 2.5px;
+      background: var(--text-primary); border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* Mobile nav */
+    .mobile-nav {
+      display: none; position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 5%;
+      flex-direction: column; gap: 1.2rem;
+      z-index: 99;
+    }
+    .mobile-nav.active { display: flex; }
+    .mobile-nav a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: 1rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .mobile-nav a:hover { color: var(--orange); }
+
+    /* ── Section label ── */
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-display);
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--orange);
+      background: var(--orange-dim);
+      border: 1px solid rgba(249,115,22,0.25);
+      border-radius: 999px;
+      padding: 4px 14px;
+    }
+
+    /* ── Section title ── */
+    .section-title {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    /* ── Grid background ── */
+    .grid-bg {
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 44px 44px;
+    }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 68px 5% 0;
+      position: relative; overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to right, rgba(10,15,26,0.96) 45%, rgba(10,15,26,0.5) 100%),
+        url('assets/turkana-1.jpeg') center/cover no-repeat;
+    }
+
+    .hero-glow {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 55% 45% at 20% 50%, rgba(249,115,22,0.08) 0%, transparent 70%);
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 680px; }
+
+    .hero-content h1 {
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      font-weight: 800; line-height: 1.08;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content h3 {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 400; color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-content p {
+      font-size: 1rem; color: var(--text-muted);
+      max-width: 520px; margin-bottom: 2rem;
+      line-height: 1.75;
+    }
+
+    /* Status dot */
+    .status-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #22c55e; display: inline-block;
+      box-shadow: 0 0 8px rgba(34,197,94,0.7);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.35} }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--orange); color: #fff;
+      font-family: var(--font-display); font-weight: 700; font-size: 0.875rem;
+      padding: 12px 24px; border-radius: 9px; text-decoration: none;
+      transition: box-shadow 0.2s, transform 0.15s;
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover {
+      box-shadow: 0 0 28px var(--orange-glow);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent; color: var(--text-primary);
+      font-family: var(--font-display); font-weight: 600; font-size: 0.875rem;
+      border: 1px solid var(--border);
+      padding: 12px 24px; border-radius: 9px; text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-outline:hover {
+      border-color: rgba(249,115,22,0.5);
+      background: var(--orange-dim);
+    }
+
+    /* Stats */
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-bottom: 3px solid var(--orange);
+      border-radius: 12px;
+      padding: 1.2rem 1rem;
+      text-align: center;
+    }
+    .stat-card h3 {
+      font-size: 1.6rem; color: var(--orange); margin-bottom: 4px;
+    }
+    .stat-card p { font-size: 0.78rem; color: var(--text-muted); }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+    .card:hover {
+      border-color: rgba(249,115,22,0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(249,115,22,0.1);
+    }
+
+    /* ── Tech tag ── */
+    .tech-tag {
+      display: inline-block;
+      background: var(--orange-dim);
+      color: var(--orange-light);
+      border: 1px solid rgba(249,115,22,0.2);
+      font-size: 0.72rem; font-weight: 600;
+      padding: 3px 10px; border-radius: 6px;
+    }
+
+    /* ── Category tag ── */
+    .category-tag {
+      font-size: 0.68rem; text-transform: uppercase;
+      letter-spacing: 1px; color: var(--orange);
+      font-weight: 700;
+    }
+
+    /* ── Skill bars ── */
+    .skill-bar-bg {
+      background: #1e293b; height: 8px;
+      border-radius: 4px; margin-top: 6px; overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%; border-radius: 4px;
+      background: linear-gradient(90deg, var(--orange), var(--orange-light));
+      transition: width 1.2s ease-in-out;
+    }
+
+    /* ── Timeline ── */
+    .timeline {
+      border-left: 2px solid var(--orange);
+      margin-left: 16px; padding-left: 28px;
+    }
+    .timeline-item { position: relative; margin-bottom: 2rem; }
+    .timeline-item::before {
+      content: '';
+      position: absolute; left: -39px; top: 4px;
+      width: 18px; height: 18px;
+      background: var(--orange); border-radius: 50%;
+      box-shadow: 0 0 12px var(--orange-glow);
+    }
+    .timeline-date {
+      font-family: var(--font-display);
+      font-weight: 700; color: var(--orange);
+      font-size: 0.85rem; margin-bottom: 4px;
+    }
+    .timeline-item h4 {
+      font-size: 1rem; margin-bottom: 2px;
+    }
+    .timeline-item p { font-size: 0.85rem; color: var(--text-muted); }
+
+    /* ── Trust signals ── */
+    .trust-section {
+      background: var(--bg-surface);
+      border-top: 1px solid rgba(249,115,22,0.08);
+      border-bottom: 1px solid rgba(249,115,22,0.08);
+      padding: 2.5rem 5%;
+      text-align: center;
+    }
+    .trust-label {
+      font-size: 0.72rem; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-family: var(--font-display);
+    }
+    .trust-item {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 6px;
+      color: var(--text-muted); font-size: 0.875rem; font-weight: 500;
+    }
+    .trust-item i { font-size: 1.4rem; color: var(--orange); }
+
+    /* ── Project image ── */
+    .project-img {
+      width: 100%; aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 10px 10px 0 0;
+    }
+    .project-img-placeholder {
+      width: 100%; aspect-ratio: 16/9;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 10px 10px 0 0;
+      font-size: 3rem;
+    }
+
+    /* ── Contact form ── */
+    .form-input {
+      width: 100%; background: var(--bg-card);
+      border: 1px solid var(--border); border-radius: 9px;
+      padding: 12px 16px; color: var(--text-primary);
+      font-family: var(--font-body); font-size: 0.9rem;
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-input::placeholder { color: var(--text-muted); }
+    .form-input:focus {
+      border-color: rgba(249,115,22,0.5);
+      box-shadow: 0 0 0 3px rgba(249,115,22,0.08);
+    }
+
+    /* ── Modal ── */
+    .modal {
+      display: none; position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,0.88);
+      align-items: center; justify-content: center;
+    }
+    .modal.active { display: flex; }
+    .modal-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--orange);
+      border-radius: 16px; padding: 2rem;
+      width: 90%; max-width: 580px; position: relative;
+    }
+    .modal-close {
+      position: absolute; right: 16px; top: 12px;
+      font-size: 1.5rem; cursor: pointer; color: var(--orange);
+      background: none; border: none;
+    }
+    pre {
+      background: #0a0f1a; padding: 1.2rem;
+      border-radius: 8px; overflow-x: auto;
+      font-size: 0.8rem; color: #7dd3fc;
+      border: 1px solid var(--border);
+      margin-top: 1rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: #070b14;
+      border-top: 1px solid rgba(249,115,22,0.08);
+      padding: 2.5rem 5%;
+      text-align: center;
+    }
+    footer p { color: var(--text-muted); font-size: 0.875rem; }
+
+    /* ── Divider ── */
+    .divider { border: none; border-top: 1px solid var(--border); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; }
+      .nav-hire { display: none; }
+      .hero-bg {
+        background:
+          linear-gradient(to bottom, rgba(10,15,26,0.92) 0%, rgba(10,15,26,0.75) 100%),
+          url('assets/turkana-1.jpeg') center/cover no-repeat;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-    <nav class="navbar">
-        <div class="logo">
-            <img src="assets/logo.png" alt="George Logo" class="nav-logo">
-        </div>
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Work</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="hamburger">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </div>
-    </nav>
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <nav class="navbar" role="banner" aria-label="Main navigation">
 
-    <section id="home" class="hero">
-        <div class="hero-content" data-aos="fade-up">
-            <h1>Hi, I'm <span class="highlight">George Moruita Eipa</span></h1>
-            <h3>I am a <span class="typing"></span></h3>
-            <p>Building digital experiences with a focus on tradition, culture, and clean code.</p>
-            <div class="cta-group">
-                <a href="#projects" class="btn primary">View My Work</a>
-                <a href="#contact" class="btn secondary">Contact Me</a>
-            </div>
-        </div>
-    </section>
+    <!-- Logo -->
+    <a href="#hero" aria-label="George Eipa Home">
+      <img src="assets/logo.png" alt="GMeipa Logo" class="nav-logo" />
+    </a>
 
-    <section id="about" class="about">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-container">
-            <div class="about-text" data-aos="fade-right">
-                <p>My journey into tech started with a curiosity for how the digital world can document the physical one. From storytelling in the Turkana region to mastering the logic of repositories, I am on a mission to build tools that matter.</p>
-                <div class="stats-grid">
-                    <div class="stat-card"><h3>12+</h3><p>Projects Done</p></div>
-                    <div class="stat-card"><h3>5+</h3><p>Certifications</p></div>
-                    <div class="stat-card"><h3>6+</h3><p>Tech Stack</p></div>
-                    <div class="stat-card"><h3>2</h3><p>Years Learning</p></div>
-                </div>
-                <div class="stat-card">
-    <h3>500+</h3>
-    <p>Git Commits</p>
-</div>
-            </div>
-        </div>
-    </section>
+    <!-- Desktop links -->
+    <ul class="nav-links" role="list">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact" class="nav-cta nav-hire">Hire Me</a></li>
+    </ul>
 
+    <!-- Hamburger -->
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span class="hbar"></span>
+      <span class="hbar"></span>
+      <span class="hbar"></span>
+    </button>
+  </nav>
 
-    <section class="trust-signals">
-    <div class="container">
-        <p class="trust-label">Recognized & Trained By</p>
-        <div class="logo-cloud">
-            <div class="trust-item">
-                <i class="fas fa-university"></i>
-                <span>Power Learn Project</span>
-            </div>
-            <div class="trust-item">
-                <i class="fas fa-mobile-alt"></i>
-                <span>Mobile Leap Program</span>
-            </div>
-            <div class="trust-item">
-                <i class="fab fa-free-code-camp"></i>
-                <span>freeCodeCamp</span>
-            </div>
-            <div class="trust-item">
-                <i class="fas fa-certificate"></i>
-                <span>Google Digital Skills</span>
-            </div>
-        </div>
+  <!-- Mobile nav -->
+  <div class="mobile-nav" id="mobile-nav" role="navigation" aria-label="Mobile navigation">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact" style="color: var(--orange); font-weight: 700;">Hire Me</a>
+  </div>
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-glow"></div>
+
+    <div class="hero-content" data-aos="fade-up">
+
+      <!-- Availability -->
+      <div class="section-label mb-6" style="margin-bottom: 1.5rem;">
+        <span class="status-dot"></span>
+        Available for freelance & contract work
+      </div>
+
+      <h1>
+        Hi, I'm <span class="highlight">George<br/>Moruita Eipa</span>
+      </h1>
+
+      <h3 style="margin-top: 0.75rem;">
+        I am a <span class="highlight typing"></span>
+      </h3>
+
+      <p style="margin-top: 1rem;">
+        Building scalable SaaS platforms, RESTful APIs, and high-performance web applications. Bridging the gap between complex business requirements and clean technical solutions — from Nairobi to the world.
+      </p>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem;">
+        <a href="#projects" class="btn-primary">
+          View My Work
+          <i class="fas fa-arrow-right" style="font-size: 0.8rem;"></i>
+        </a>
+        <a href="https://github.com/eipageorge5-sketch" target="_blank" rel="noopener noreferrer" class="btn-outline">
+          <i class="fab fa-github"></i>
+          GitHub
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1rem; margin-top: 3rem; max-width: 480px;">
+        <div class="stat-card"><h3>6+</h3><p>Projects Built</p></div>
+        <div class="stat-card"><h3>3+</h3><p>Years Learning</p></div>
+        <div class="stat-card"><h3>10+</h3><p>Tech Stack</p></div>
+        <div class="stat-card"><h3>500+</h3><p>Git Commits</p></div>
+      </div>
+
     </div>
-</section>
-    
+  </section>
 
-    <section id="skills" class="skills">
-        <h2 class="section-title">Technical Skills</h2>
-        <div class="skills-container" data-aos="zoom-in">
-            <div class="skill-box"><span>HTML</span><div class="bar"><div class="progress html"></div></div></div>
-            <div class="skill-box"><span>CSS/Responsive</span><div class="bar"><div class="progress css"></div></div></div>
-            <div class="skill-box"><span>JavaScript</span><div class="bar"><div class="progress js"></div></div></div>
-            <div class="skill-box"><span>Git/GitHub</span><div class="bar"><div class="progress git"></div></div></div>
-            <div class="skill-box"><span>Python (Learning)</span><div class="bar"><div class="progress python"></div></div></div>
+  <!-- ============================================================
+       ABOUT
+       ============================================================ -->
+  <section id="about" style="padding: 6rem 5%;" class="grid-bg">
+    <div style="max-width: 1100px; margin: auto;">
+
+      <div style="text-align: center; margin-bottom: 3rem;" data-aos="fade-up">
+        <div class="section-label" style="margin-bottom: 1rem;">About Me</div>
+        <h2 class="section-title" style="margin-bottom: 0;">
+          Code. Culture. <span class="highlight">Impact.</span>
+        </h2>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;" data-aos="fade-up">
+
+        <div>
+          <p style="color: var(--text-muted); margin-bottom: 1.2rem; line-height: 1.8;">
+            I'm a Full-Stack Software Engineer with a strong foundation in building scalable web applications, RESTful APIs, and database architectures. My journey into tech started with a curiosity for how the digital world can document the physical one — from storytelling in the Turkana region to engineering production-ready SaaS systems.
+          </p>
+          <p style="color: var(--text-muted); margin-bottom: 1.2rem; line-height: 1.8;">
+            I'm proficient in TypeScript, modern JavaScript, and relational databases, with hands-on experience developing multi-tenant SaaS platforms, secure authentication systems, and asynchronous backend workflows.
+          </p>
+          <p style="color: var(--text-muted); line-height: 1.8;">
+            Currently studying ICT at Eldoret National Polytechnic and advancing my skills through the Power Learn Project Software Engineering programme — while shipping real products for real clients.
+          </p>
+
+          <div style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
+            <a href="https://github.com/eipageorge5-sketch" target="_blank" rel="noopener noreferrer" class="btn-outline" style="font-size: 0.82rem; padding: 9px 18px;">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/george-eipa-93ab4b371/" target="_blank" rel="noopener noreferrer" class="btn-outline" style="font-size: 0.82rem; padding: 9px 18px;">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <!-- REPLACE WITH YOUR CV DOWNLOAD LINK -->
+            <a href="George_Eipa_CV.pdf" download class="btn-primary" style="font-size: 0.82rem; padding: 9px 18px;">
+              <i class="fas fa-download"></i> Download CV
+            </a>
+          </div>
         </div>
-    </section>
 
-    <section id="projects" class="projects">
-        <h2 class="section-title" data-aos="fade-up">Featured Projects</h2>
-        <div class="project-grid">
-            
-            
-           <div class="project-card" data-aos="fade-up">
-    <div class="project-img">
-        <img src="assets/assets:turkana-1.jpeg" alt="The Spirit of Turkana Project" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+        <!-- Turkana image -->
+        <div style="border-radius: 16px; overflow: hidden; border: 1px solid var(--border); position: relative;">
+          <img
+            src="assets/turkana-5.jpeg"
+            alt="The Spirit of Turkana — Lake Turkana at sunset"
+            style="width: 100%; height: 340px; object-fit: cover; display: block;"
+            loading="lazy"
+          />
+          <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem 1.2rem; background: linear-gradient(transparent, rgba(10,15,26,0.9));">
+            <p style="font-size: 0.78rem; color: var(--text-muted);">📍 Kenya — building digital tools that matter</p>
+          </div>
+        </div>
+
+      </div>
     </div>
-    <div class="project-info">
-        <span class="category-tag">Cinematic UX & Performance Engineering</span>
-        <h3>The Spirit of Turkana</h3>
-        
-        <p><strong>The Challenge:</strong> Preserving East African heritage through a high-definition experience that must remain accessible on low-bandwidth 3G networks.</p>
-        
-        <p><strong>The Solution:</strong> Built a modular documentary platform using the <strong>Intersection Observer API</strong> for lazy-loading assets. This balanced cinematic storytelling with <strong>aggressive performance optimization</strong>, ensuring smooth 60fps scrolling on mobile devices.</p>
-        
-        <div class="tech-stack">
-            <span class="tech-tag">JavaScript ES6+</span>
-            <span class="tech-tag">Performance Optimization</span>
-            <span class="tech-tag">Cultural Archiving</span>
-        </div>
-        
-        <div class="proj-links">
-            <a href="https://eipageorge5-sketch.github.io/spirit-of-turkana/" target="_blank" class="btn primary">Launch Experience</a>
-            <a href="https://github.com/eipageorge5-sketch" target="_blank" class="btn-link"><i class="fab fa-github"></i> View Logic</a>
-        </div>
+  </section>
+
+  <!-- ============================================================
+       TRUST SIGNALS
+       ============================================================ -->
+  <div class="trust-section" data-aos="fade-up">
+    <p class="trust-label">Recognised & Trained By</p>
+    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 3rem;">
+      <div class="trust-item">
+        <i class="fas fa-university"></i>
+        <span>Power Learn Project</span>
+      </div>
+      <div class="trust-item">
+        <i class="fas fa-mobile-alt"></i>
+        <span>Mobile Leap Program</span>
+      </div>
+      <div class="trust-item">
+        <i class="fab fa-free-code-camp"></i>
+        <span>freeCodeCamp</span>
+      </div>
+      <div class="trust-item">
+        <i class="fas fa-certificate"></i>
+        <span>Google Digital Skills</span>
+      </div>
+      <div class="trust-item">
+        <i class="fas fa-school"></i>
+        <span>Eldoret National Polytechnic</span>
+      </div>
     </div>
-</div>
-       
-            
+  </div>
 
-            <div class="project-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="project-img" style="background: #1e293b; border: 2px dashed var(--main-color); height: 150px; display: flex; align-items: center; justify-content: center; border-radius: 10px; margin-bottom: 1rem;">
-                    <i class="fas fa-folder-open" style="font-size: 3rem; color: var(--main-color);"></i>
-                </div>
-                <div class="project-info">
-                    <h3>GitHub Portfolio Manager</h3>
-                    <p>A clean organizational structure for managing image assets across multiple repositories.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Git</span>
-                        <span class="tech-tag">Markdown</span>
-                    </div>
-                    <div class="proj-links">
-                        <a href="https://github.com/eipageorge5-sketch?tab=repositories" target="_blank" class="btn primary" style="padding: 5px 15px; font-size: 0.8rem;">View Repos</a>
-                        <a href="https://github.com/eipageorge5-sketch" target="_blank" class="btn-link"><i class="fab fa-github"></i> GitHub</a>
-                    </div>
-                </div>
-            </div>
+  <!-- ============================================================
+       SKILLS
+       ============================================================ -->
+  <section id="skills" style="padding: 6rem 5%;">
+    <div style="max-width: 900px; margin: auto;">
 
-            <div class="project-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="project-img" style="background: linear-gradient(45deg, #3776ab, #ffde57); height: 150px; display: flex; align-items: center; justify-content: center; border-radius: 10px; margin-bottom: 1rem;">
-                    <i class="fab fa-python" style="font-size: 4rem; color: white;"></i>
-                </div>
-                <div class="project-info">
-                    <h3>Logic & Algorithms</h3>
-                    <p>Python scripts developed to solve automation tasks and data processing.</p>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Automation</span>
-                    </div>
-                    <div class="proj-links">
-                        <button onclick="openCodeModal()" class="btn primary" style="padding: 5px 15px; font-size: 0.8rem;">View Logic</button>
-                        <a href="https://github.com/eipageorge5-sketch" target="_blank" class="btn-link"><i class="fab fa-github"></i> GitHub</a>
-                    </div>
-                </div>
-            </div>
+      <div style="text-align: center; margin-bottom: 3rem;" data-aos="fade-up">
+        <div class="section-label" style="margin-bottom: 1rem;">Technical Skills</div>
+        <h2 class="section-title" style="margin-bottom: 0;">What I <span class="highlight">Build With</span></h2>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;" data-aos="zoom-in">
+
+        <!-- Left column -->
+        <div>
+          <p style="font-family: var(--font-display); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--orange); margin-bottom: 1.2rem;">Languages & Frontend</p>
+
+          <div style="margin-bottom: 1rem;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.875rem;"><span>TypeScript / JavaScript (ES6+)</span><span style="color: var(--orange);">90%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 90%;"></div></div>
+          </div>
+          <div style="margin-bottom: 1rem;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.875rem;"><span>HTML5 / CSS3 / Responsive</span><span style="color: var(--orange);">95%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 95%;"></div></div>
+          </div>
+          <div style="margin-bottom: 1rem;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.875rem;"><span>React.js / Next.js</span><span style="color: var(--orange);">80%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 80%;"></div></div>
+          </div>
+          <div style="margin-bottom: 1rem;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.875rem;"><span>Python / FastAPI</span><span style="color: var(--orange);">70%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 70%;"></div></div>
+          </div>
         </div>
-    </section>
 
-    <section class="timeline-section">
-        <h2 class="section-title">Learning Journey</h2>
+        <!-- Right column -->
+        <div>
+          <p style="font-family: var(--font-display); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--orange); margin-bottom: 1.2rem;">Backend, Databases & Tools</p>
+
+          <div style="margin-bottom: 1rem;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.875rem;"><span>Node.js / NestJS / RESTful APIs</span><span style="color: var(--orange);">82%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 82%;"></div></div>
+          </div>
+          <div style="margin-bottom: 1rem;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.875rem;"><span>PostgreSQL / Prisma ORM</span><span style="color: var(--orange);">78%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 78%;"></div></div>
+          </div>
+          <div style="margin-bottom: 1rem;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.875rem;"><span>MongoDB / Mongoose</span><span style="color: var(--orange);">72%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 72%;"></div></div>
+          </div>
+          <div style="margin-bottom: 1rem;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.875rem;"><span>Git / GitHub / Agile</span><span style="color: var(--orange);">88%</span></div>
+            <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 88%;"></div></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Tech badge cloud -->
+      <div style="margin-top: 3rem; display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center;" data-aos="fade-up">
+        <span class="tech-tag">TypeScript</span>
+        <span class="tech-tag">JavaScript ES6+</span>
+        <span class="tech-tag">React.js</span>
+        <span class="tech-tag">Next.js</span>
+        <span class="tech-tag">Node.js</span>
+        <span class="tech-tag">NestJS</span>
+        <span class="tech-tag">FastAPI</span>
+        <span class="tech-tag">Python</span>
+        <span class="tech-tag">Flutter</span>
+        <span class="tech-tag">PostgreSQL</span>
+        <span class="tech-tag">Prisma ORM</span>
+        <span class="tech-tag">MongoDB</span>
+        <span class="tech-tag">RabbitMQ</span>
+        <span class="tech-tag">JWT / RBAC</span>
+        <span class="tech-tag">REST APIs</span>
+        <span class="tech-tag">Git / GitHub</span>
+        <span class="tech-tag">Lighthouse Auditing</span>
+        <span class="tech-tag">Render / Vercel</span>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider" style="max-width: 1100px; margin: auto;" />
+
+  <!-- ============================================================
+       PROJECTS
+       ============================================================ -->
+  <section id="projects" style="padding: 6rem 5%;">
+    <div style="max-width: 1100px; margin: auto;">
+
+      <div style="text-align: center; margin-bottom: 3rem;" data-aos="fade-up">
+        <div class="section-label" style="margin-bottom: 1rem;">Featured Projects</div>
+        <h2 class="section-title" style="margin-bottom: 0;">
+          Things I've <span class="highlight">Built</span>
+        </h2>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+
+        <!-- ── PROJECT 1: The Spirit of Turkana ── -->
+        <article class="card" data-aos="fade-up" style="overflow: hidden;">
+          <img
+            src="assets/turkana-1.jpeg"
+            alt="The Spirit of Turkana — cinematic documentary web experience"
+            class="project-img"
+            loading="lazy"
+          />
+          <div style="padding: 1.4rem;">
+            <span class="category-tag">Cinematic UX & Performance Engineering</span>
+            <h3 style="font-size: 1.1rem; margin: 0.5rem 0 0.6rem;">The Spirit of Turkana</h3>
+            <p style="font-size: 0.83rem; color: var(--text-muted); margin-bottom: 0.6rem; line-height: 1.6;">
+              <strong style="color: var(--text-primary);">The Challenge:</strong> Preserving East African heritage through a high-definition cinematic experience accessible on 3G networks.
+            </p>
+            <p style="font-size: 0.83rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.6;">
+              <strong style="color: var(--text-primary);">The Solution:</strong> Lazy-loading pipeline via Intersection Observer API — reduced initial page weight by 60% while maintaining smooth 60fps scrolling on mobile.
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem;">
+              <span class="tech-tag">JavaScript ES6+</span>
+              <span class="tech-tag">HTML5 / CSS3</span>
+              <span class="tech-tag">Intersection Observer</span>
+              <span class="tech-tag">Performance Optimization</span>
+            </div>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <a href="https://eipageorge5-sketch.github.io/spirit-of-turkana/" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size: 0.8rem; padding: 8px 16px;">
+                Launch Experience ↗
+              </a>
+              <!-- REPLACE WITH YOUR ACTUAL REPO LINK -->
+              <a href="https://github.com/eipageorge5-sketch" target="_blank" rel="noopener noreferrer" class="btn-outline" style="font-size: 0.8rem; padding: 8px 16px;">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── PROJECT 2: WiFiHub ISP Manager ── -->
+        <article class="card" data-aos="fade-up" data-aos-delay="100" style="overflow: hidden;">
+          <div class="project-img-placeholder" style="background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);">
+            <i class="fas fa-wifi" style="color: var(--orange); font-size: 3.5rem;"></i>
+          </div>
+          <div style="padding: 1.4rem;">
+            <span class="category-tag">SaaS Platform — Full-Stack</span>
+            <h3 style="font-size: 1.1rem; margin: 0.5rem 0 0.6rem;">WiFiHub ISP Manager</h3>
+            <p style="font-size: 0.83rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.6;">
+              Multi-tenant SaaS platform for hotspot operators and ISPs to manage billing and vouchers. Built with PostgreSQL + Prisma schema, secure RESTful APIs with JWT auth and RBAC, and M-Pesa payment integration.
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem;">
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">Prisma</span>
+              <span class="tech-tag">JWT / RBAC</span>
+              <span class="tech-tag">M-Pesa</span>
+            </div>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <!-- REPLACE WITH YOUR ACTUAL REPO LINK -->
+              <a href="#" class="btn-primary" style="font-size: 0.8rem; padding: 8px 16px;">
+                In Development
+              </a>
+              <a href="https://github.com/eipageorge5-sketch" target="_blank" rel="noopener noreferrer" class="btn-outline" style="font-size: 0.8rem; padding: 8px 16px;">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── PROJECT 3: SCCBO Platform ── -->
+        <article class="card" data-aos="fade-up" data-aos-delay="150" style="overflow: hidden;">
+          <div class="project-img-placeholder" style="background: linear-gradient(135deg, #0f172a 0%, #1a2e1a 100%);">
+            <i class="fas fa-sitemap" style="color: var(--orange); font-size: 3.5rem;"></i>
+          </div>
+          <div style="padding: 1.4rem;">
+            <span class="category-tag">NGO Management System — Full-Stack</span>
+            <h3 style="font-size: 1.1rem; margin: 0.5rem 0 0.6rem;">SCCBO Platform</h3>
+            <p style="font-size: 0.83rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.6;">
+              Comprehensive NGO management system for tracking operations, field workers, and financial reporting. Built on Next.js + TypeScript with secure role-specific dashboards and optimized reporting workflows.
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem;">
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">Auth / RBAC</span>
+            </div>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <!-- REPLACE WITH YOUR ACTUAL REPO LINK -->
+              <a href="#" class="btn-primary" style="font-size: 0.8rem; padding: 8px 16px;">
+                In Development
+              </a>
+              <a href="https://github.com/eipageorge5-sketch" target="_blank" rel="noopener noreferrer" class="btn-outline" style="font-size: 0.8rem; padding: 8px 16px;">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── PROJECT 4: Northstar Webhook ── -->
+        <article class="card" data-aos="fade-up" data-aos-delay="100" style="overflow: hidden;">
+          <div class="project-img-placeholder" style="background: linear-gradient(135deg, #0f172a 0%, #2d1a0f 100%);">
+            <i class="fas fa-bolt" style="color: var(--orange); font-size: 3.5rem;"></i>
+          </div>
+          <div style="padding: 1.4rem;">
+            <span class="category-tag">Backend Engineering — Python</span>
+            <h3 style="font-size: 1.1rem; margin: 0.5rem 0 0.6rem;">Northstar Webhook Prototype</h3>
+            <p style="font-size: 0.83rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.6;">
+              Production-style inventory webhook service built with FastAPI. Features HMAC-SHA256 signature verification, RESTful endpoints for real-time stock updates, and deployed on Render.
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem;">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">FastAPI</span>
+              <span class="tech-tag">HMAC-SHA256</span>
+              <span class="tech-tag">Render</span>
+            </div>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <!-- REPLACE WITH YOUR RENDER LIVE LINK -->
+              <a href="#" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size: 0.8rem; padding: 8px 16px;">
+                Live on Render ↗
+              </a>
+              <!-- REPLACE WITH YOUR ACTUAL REPO LINK -->
+              <a href="https://github.com/eipageorge5-sketch" target="_blank" rel="noopener noreferrer" class="btn-outline" style="font-size: 0.8rem; padding: 8px 16px;">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── PROJECT 5: Solstice Event Check-in ── -->
+        <article class="card" data-aos="fade-up" data-aos-delay="150" style="overflow: hidden;">
+          <div class="project-img-placeholder" style="background: linear-gradient(135deg, #0f172a 0%, #1a0f2e 100%);">
+            <i class="fas fa-qrcode" style="color: var(--orange); font-size: 3.5rem;"></i>
+          </div>
+          <div style="padding: 1.4rem;">
+            <span class="category-tag">Async Backend — RabbitMQ</span>
+            <h3 style="font-size: 1.1rem; margin: 0.5rem 0 0.6rem;">Solstice Event Check-in</h3>
+            <p style="font-size: 0.83rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.6;">
+              Asynchronous event check-in system with QR code processing and automated badge-printing workflows. Uses RabbitMQ + CloudAMQP for message queuing, with durable queues and webhook status updates.
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem;">
+              <span class="tech-tag">FastAPI</span>
+              <span class="tech-tag">RabbitMQ</span>
+              <span class="tech-tag">CloudAMQP</span>
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Webhooks</span>
+            </div>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <!-- REPLACE WITH YOUR RENDER LIVE LINK -->
+              <a href="#" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size: 0.8rem; padding: 8px 16px;">
+                Live on Render ↗
+              </a>
+              <!-- REPLACE WITH YOUR ACTUAL REPO LINK -->
+              <a href="https://github.com/eipageorge5-sketch" target="_blank" rel="noopener noreferrer" class="btn-outline" style="font-size: 0.8rem; padding: 8px 16px;">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── PROJECT 6: Bingwa Task App ── -->
+        <article class="card" data-aos="fade-up" data-aos-delay="200" style="overflow: hidden;">
+          <div class="project-img-placeholder" style="background: linear-gradient(135deg, #0f172a 0%, #1a2e1f 100%);">
+            <i class="fas fa-tasks" style="color: var(--orange); font-size: 3.5rem;"></i>
+          </div>
+          <div style="padding: 1.4rem;">
+            <span class="category-tag">Full-Stack — NestJS + Flutter</span>
+            <h3 style="font-size: 1.1rem; margin: 0.5rem 0 0.6rem;">Bingwa Task App</h3>
+            <p style="font-size: 0.83rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.6;">
+              Task management app with a NestJS REST API backend, MongoDB for persistent storage, and a Flutter frontend. Deployed on Render with environment-based secure credential configuration.
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem;">
+              <span class="tech-tag">NestJS</span>
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">MongoDB</span>
+              <span class="tech-tag">Flutter</span>
+              <span class="tech-tag">Render</span>
+            </div>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <!-- REPLACE WITH YOUR RENDER LIVE LINK -->
+              <a href="#" target="_blank" rel="noopener noreferrer" class="btn-primary" style="font-size: 0.8rem; padding: 8px 16px;">
+                Live on Render ↗
+              </a>
+              <!-- REPLACE WITH YOUR ACTUAL REPO LINK -->
+              <a href="https://github.com/eipageorge5-sketch" target="_blank" rel="noopener noreferrer" class="btn-outline" style="font-size: 0.8rem; padding: 8px 16px;">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div style="text-align: center; margin-top: 2.5rem;">
+        <a href="https://github.com/eipageorge5-sketch?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn-outline">
+          View All Repositories on GitHub ↗
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider" style="max-width: 1100px; margin: auto;" />
+
+  <!-- ============================================================
+       EXPERIENCE & LEARNING JOURNEY
+       ============================================================ -->
+  <section id="experience" style="padding: 6rem 5%;">
+    <div style="max-width: 1100px; margin: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;">
+
+      <!-- Experience -->
+      <div data-aos="fade-right">
+        <div class="section-label" style="margin-bottom: 1.5rem;">Work Experience</div>
+        <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 2rem;">
+          Professional <span class="highlight">Experience</span>
+        </h2>
+
         <div class="timeline">
-            <div class="timeline-item">
-                <div class="date">2026</div>
-                <h4>Power Learn Project</h4>
-                <p>Advanced Python Development (Ongoing)</p>
-            </div>
-            <div class="timeline-item">
-                <div class="date">2025</div>
-                <h4>freeCodeCamp</h4>
-                <p>Responsive Web Design Certification</p>
-            </div>
-            <div class="timeline-item">
-                <div class="date">2024</div>
-                <h4>Mobile Leap Program</h4>
-                <p>Foundation of Mobile and Web Tech</p>
-            </div>
-        </div>
-    </section>
+          <div class="timeline-item">
+            <div class="timeline-date">Aug 2025 — Present</div>
+            <h4>Systems Administrator & Operations Lead</h4>
+            <p style="color: var(--orange-light); font-size: 0.82rem; margin-bottom: 6px;">EMCA Motors</p>
+            <p>Administers the UniQon Garage Management System — digitized inventory tracking, automated reporting workflows, and ensures 100% data integrity for service and financial records.</p>
+          </div>
 
-    <section id="contact" class="contact">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-container">
-            <form action="https://formspree.io/f/meevndwp" method="POST">
-                <input type="text" name="name" placeholder="Name" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-                <button type="submit" class="btn primary">Send Message</button>
-            </form>
-            <div class="contact-info">
-                <p><i class="fas fa-map-marker-alt"></i> Kenya</p>
-                <div class="socials">
-                    <a href="https://github.com/eipageorge5-sketch"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/george-eipa-93ab4b371/"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://x.com/LaFamily550"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
+          <div class="timeline-item">
+            <div class="timeline-date">2025 — Present</div>
+            <h4>Software Developer</h4>
+            <p style="color: var(--orange-light); font-size: 0.82rem; margin-bottom: 6px;">Independent / Project-Based</p>
+            <p>Designed, built, and deployed 6+ production-style applications using TypeScript, Python, FastAPI, NestJS, Flutter, PostgreSQL, and REST APIs. Includes async systems with RabbitMQ and secure API integrations.</p>
+          </div>
 
-    <div id="codeModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeCodeModal()">&times;</span>
-            <h3 style="color: #38bdf8;">Python Logic Showcase</h3>
-            <pre><code>
-def calculate_growth(initial_val, rate):
+          <div class="timeline-item">
+            <div class="timeline-date">Feb 2025 — Present</div>
+            <h4>Freelance Web Developer</h4>
+            <p style="color: var(--orange-light); font-size: 0.82rem; margin-bottom: 6px;">Self-Employed</p>
+            <p>Architects and deploys responsive, high-performance web applications for local clients. Manages full project lifecycle from requirements gathering to deployment.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Learning Journey -->
+      <div data-aos="fade-left">
+        <div class="section-label" style="margin-bottom: 1.5rem;">Education & Training</div>
+        <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 2rem;">
+          Learning <span class="highlight">Journey</span>
+        </h2>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-date">Ongoing</div>
+            <h4>Information Communication Technology (ICT)</h4>
+            <p>Eldoret National Polytechnic</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">2026 — Ongoing</div>
+            <h4>Software Engineering Training</h4>
+            <p>Power Learn Project (PLP) — Advanced Python & Full-Stack Development</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">2025</div>
+            <h4>Responsive Web Design & JavaScript Algorithms</h4>
+            <p>freeCodeCamp — 300+ hours of project-based development</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">2024</div>
+            <h4>Mobile Leap Program</h4>
+            <p>Foundation of Mobile and Web Technology — Awarded for excellence in Algorithmic Thinking and Program Logic</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">2023</div>
+            <h4>Kenya Certificate of Secondary Education (KCSE)</h4>
+            <p>David Lee Adventist School</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider" style="max-width: 1100px; margin: auto;" />
+
+  <!-- ============================================================
+       CONTACT
+       ============================================================ -->
+  <section id="contact" style="padding: 6rem 5%;" class="grid-bg">
+    <div style="max-width: 1100px; margin: auto;">
+
+      <div style="text-align: center; margin-bottom: 3rem;" data-aos="fade-up">
+        <div class="section-label" style="margin-bottom: 1rem;">Get In Touch</div>
+        <h2 class="section-title" style="margin-bottom: 0.75rem;">
+          Have a project in mind?
+        </h2>
+        <p style="color: var(--text-muted); max-width: 480px; margin: auto;">
+          I'm currently available for freelance work, contract projects, and full-time roles. Let's build something great together.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 900px; margin: auto;" data-aos="fade-up">
+
+        <!-- Form -->
+        <form action="https://formspree.io/f/meevndwp" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
+          <div>
+            <label for="name" style="display: block; font-size: 0.82rem; font-family: var(--font-display); font-weight: 600; margin-bottom: 6px;">Your Name</label>
+            <input type="text" id="name" name="name" class="form-input" placeholder="John Smith" required />
+          </div>
+          <div>
+            <label for="email" style="display: block; font-size: 0.82rem; font-family: var(--font-display); font-weight: 600; margin-bottom: 6px;">Email Address</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="john@company.com" required />
+          </div>
+          <div>
+            <label for="message" style="display: block; font-size: 0.82rem; font-family: var(--font-display); font-weight: 600; margin-bottom: 6px;">Message</label>
+            <textarea id="message" name="message" rows="5" class="form-input" placeholder="Tell me about your project..." required style="resize: vertical;"></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="justify-content: center;">
+            Send Message <i class="fas fa-paper-plane" style="font-size: 0.8rem;"></i>
+          </button>
+        </form>
+
+        <!-- Contact info -->
+        <div style="display: flex; flex-direction: column; justify-content: center; gap: 1.5rem;">
+
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 44px; height: 44px; background: var(--orange-dim); border: 1px solid rgba(249,115,22,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i class="fas fa-envelope" style="color: var(--orange);"></i>
+            </div>
+            <div>
+              <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 2px;">Email</p>
+              <a href="mailto:eipageorge5@gmail.com" style="color: var(--text-primary); text-decoration: none; font-weight: 500; font-size: 0.9rem;">eipageorge5@gmail.com</a>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 44px; height: 44px; background: var(--orange-dim); border: 1px solid rgba(249,115,22,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i class="fas fa-phone" style="color: var(--orange);"></i>
+            </div>
+            <div>
+              <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 2px;">Phone / WhatsApp</p>
+              <a href="tel:+254768927893" style="color: var(--text-primary); text-decoration: none; font-weight: 500; font-size: 0.9rem;">+254 768 927 893</a>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 44px; height: 44px; background: var(--orange-dim); border: 1px solid rgba(249,115,22,0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <i class="fas fa-map-marker-alt" style="color: var(--orange);"></i>
+            </div>
+            <div>
+              <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 2px;">Location</p>
+              <p style="font-weight: 500; font-size: 0.9rem;">Kenya 🇰🇪</p>
+            </div>
+          </div>
+
+          <!-- Socials -->
+          <div style="display: flex; gap: 0.75rem; margin-top: 0.5rem;">
+            <a href="https://github.com/eipageorge5-sketch" target="_blank" rel="noopener noreferrer"
+               style="width: 42px; height: 42px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); text-decoration: none; transition: border-color 0.2s, color 0.2s;"
+               onmouseover="this.style.borderColor='var(--orange)';this.style.color='var(--orange)'"
+               onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-muted)'">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/george-eipa-93ab4b371/" target="_blank" rel="noopener noreferrer"
+               style="width: 42px; height: 42px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); text-decoration: none; transition: border-color 0.2s, color 0.2s;"
+               onmouseover="this.style.borderColor='var(--orange)';this.style.color='var(--orange)'"
+               onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-muted)'">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://x.com/LaFamily550" target="_blank" rel="noopener noreferrer"
+               style="width: 42px; height: 42px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); text-decoration: none; transition: border-color 0.2s, color 0.2s;"
+               onmouseover="this.style.borderColor='var(--orange)';this.style.color='var(--orange)'"
+               onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-muted)'">
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer>
+    <div style="max-width: 1100px; margin: auto; display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+      <img src="assets/logo.png" alt="GMeipa Logo" style="height: 36px; opacity: 0.8;" />
+      <p>&copy; 2026 George Moruita Eipa. Built with passion in Kenya 🇰🇪</p>
+      <p style="font-size: 0.78rem; color: #64748b;">Full-Stack Software Engineer · Nairobi, Kenya</p>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       PYTHON MODAL
+       ============================================================ -->
+  <div id="codeModal" class="modal" role="dialog" aria-modal="true" aria-label="Python code showcase">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close modal">&times;</button>
+      <h3 style="color: #38bdf8; font-family: var(--font-display);">Python Logic Showcase</h3>
+      <pre><code>def calculate_growth(initial_val, rate):
     return initial_val * (1 + rate)
 
 # Project Data Automation
 turkana_data = [120, 150, 180]
-updated_metrics = [calculate_growth(x, 0.05) for x in turkana_data]
-print(f"Projected Growth: {updated_metrics}")
-            </code></pre>
-        </div>
+updated_metrics = [
+    calculate_growth(x, 0.05)
+    for x in turkana_data
+]
+print(f"Projected Growth: {updated_metrics}")</code></pre>
     </div>
+  </div>
 
-    <footer>
-        <p>&copy; 2026 George Portfolio. Built with passion in Kenya.</p>
-    </footer>
+  <!-- ============================================================
+       JAVASCRIPT
+       ============================================================ -->
+  <script>
+    // ── AOS Init ──
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof AOS !== 'undefined') {
+        AOS.init({ duration: 900, once: true, offset: 80 });
+      }
+    });
 
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
+    // ── Typed.js ──
+    document.addEventListener('DOMContentLoaded', () => {
+      if (typeof Typed !== 'undefined') {
+        new Typed('.typing', {
+          strings: [
+            'Full-Stack Software Engineer',
+            'Backend API Developer',
+            'Digital Archivist',
+            'SaaS Builder',
+          ],
+          typeSpeed: 80,
+          backSpeed: 50,
+          loop: true,
+        });
+      }
+    });
+
+    // ── Hamburger ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    hamburger?.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('active');
+      hamburger.setAttribute('aria-expanded', open);
+    });
+
+    // Close mobile nav on link click
+    mobileNav?.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileNav.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // ── Modal ──
+    function closeModal() {
+      document.getElementById('codeModal').classList.remove('active');
+    }
+    function openModal() {
+      document.getElementById('codeModal').classList.add('active');
+    }
+
+    // Close on backdrop click
+    document.getElementById('codeModal')?.addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+
 </body>
 </html>
