@@ -4,7 +4,7 @@
 
 ---
 
-[![Live Site](https://img.shields.io/badge/Live%20Site-Visit-f97316?style=flat-square&logo=googlechrome&logoColor=white)](https://eipageorge5-sketch.github.io/)
+[![Live Site](https://img.shields.io/badge/Live%20Site-Visit-f97316?style=flat-square&logo=googlechrome&logoColor=white)](eipageorge5-sketch.github.io/PORTFOLIO/)
 [![GitHub](https://img.shields.io/badge/GitHub-eipageorge5--sketch-181717?style=flat-square&logo=github)](https://github.com/eipageorge5-sketch)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-George%20Eipa-0077B5?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/george-eipa-93ab4b371/)
 [![Email](https://img.shields.io/badge/Email-eipageorge5%40gmail.com-f97316?style=flat-square&logo=gmail&logoColor=white)](mailto:eipageorge5@gmail.com)
@@ -13,7 +13,7 @@
 
 ## 📸 Preview
 
-> **[→ View Live Portfolio](https://eipageorge5-sketch.github.io/)**
+> **[→ View Live Portfolio](eipageorge5-sketch.github.io/PORTFOLIO/)**
 
 ---
 
@@ -39,25 +39,25 @@ Multi-tenant SaaS platform for hotspot operators and ISPs to manage billing, vou
 
 ---
 
-### SCCBO Platform *(In Development)*
+### [SCCBO Platform](https://sccbo-platform.vercel.app/en)  *(In Development)*
 Comprehensive NGO management system for tracking operations, field workers, and financial reporting. Built on Next.js + TypeScript with role-specific dashboards and optimized reporting workflows.
 `Next.js` · `TypeScript` · `PostgreSQL` · `Authentication`
 
 ---
 
-### Northstar Webhook Prototype
+### [Northstar Webhook Prototype](https://northstar-webhook-prototype.onrender.com/)
 Production-style inventory webhook service with HMAC-SHA256 signature verification, RESTful endpoints for real-time stock updates, and deployed to Render.
 `Python` · `FastAPI` · `HMAC-SHA256` · `Render`
 
 ---
 
-### Solstice Event Check-in
+### [Solstice Event Check-in](https://solstice-event-checkin-f52r.onrender.com/)
 Asynchronous event check-in system with QR code processing and automated badge-printing workflows. Uses RabbitMQ + CloudAMQP for durable message queuing and webhook-based status updates.
 `Python` · `FastAPI` · `RabbitMQ` · `CloudAMQP` · `Webhooks`
 
 ---
 
-### Bingwa Task App
+### [Bingwa Task App](https://bingwa-task-app.onrender.com/)
 Full-stack task management application with a NestJS REST API backend, MongoDB for persistent storage, and a Flutter frontend. Deployed on Render with secure environment-based configuration.
 `NestJS` · `TypeScript` · `MongoDB` · `Flutter` · `Render`
 
@@ -119,7 +119,7 @@ For client projects and production applications, infrastructure choices matter s
 
 For serious web projects — especially WordPress sites, SaaS dashboards, and client work — I recommend using managed hosting on enterprise-grade infrastructure. See my full hosting breakdown and recommendations here:
 
-**[→ Full Hosting Performance Breakdown](https://YOUR-LANDING-PAGE-URL.com)**
+**[→ Full Hosting Performance Breakdown](https://eipageorge5-sketch.github.io/kinsta-landing-page/)**
 
 ---
 
