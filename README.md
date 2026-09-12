@@ -63,6 +63,15 @@ Full-stack task management application with a NestJS REST API backend, MongoDB f
 
 ---
 
+### Reflex Delivery MVP
+Real-time logistics platform with three role-based dashboards (Retailer, Dispatcher, Rider).
+Split-stack architecture — Next.js frontend on Vercel, Socket.IO backend on Render for
+persistent WebSocket connections. Includes CORS configuration and Supabase connection
+pooling via Prisma.
+`Next.js` · `TypeScript` · `Node.js` · `Socket.IO` · `PostgreSQL` · `Prisma` · `Supabase`
+
+---
+
 ## 🛠 Tech Stack
 
 | Category | Technologies |
