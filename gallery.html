@@ -1,86 +1,439 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visual Gallery | Optimization Showcase</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 15px;
-            padding: 2rem;
-        }
-        .gallery-item {
-            overflow: hidden;
-            border-radius: 10px;
-            background: #1e293b;
-            position: relative;
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        .perf-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: var(--main-color);
-            color: white;
-            padding: 5px 10px;
-            font-size: 0.7rem;
-            border-radius: 5px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Spirit of Turkana — Visual Gallery | George Eipa</title>
+  <meta name="description" content="A visual gallery from The Spirit of Turkana project — optimised for 3G networks. By George Moruita Eipa." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* ── Gallery-specific styles ── */
+
+    .gallery-hero {
+      padding: 120px 5% 60px;
+      text-align: center;
+      background:
+        linear-gradient(to bottom, rgba(10,15,26,0.92) 0%, rgba(10,15,26,0.75) 100%),
+        url('assets/turkana-1.jpeg') center / cover no-repeat;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .gallery-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .gallery-hero p {
+      max-width: 540px;
+      margin: 0 auto 2rem;
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    .perf-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--orange-dim);
+      border: 1px solid rgba(249,115,22,0.25);
+      color: var(--orange);
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Gallery grid */
+    .gallery-section {
+      padding: 4rem 5%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    }
+
+    .gallery-item:hover {
+      border-color: rgba(249,115,22,0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Overlay on hover */
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,15,26,0.85) 0%, transparent 60%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.2rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay h3 {
+      font-size: 1rem;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .gallery-overlay p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Performance badge */
+    .perf-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--orange);
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 6px;
+      z-index: 1;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      background: rgba(0,0,0,0.95);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .lightbox-caption {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      text-align: center;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      font-size: 2rem;
+      color: var(--orange);
+      background: none;
+      border: none;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+
+    .lightbox-close:hover {
+      color: var(--orange-light);
+    }
+
+    /* Back link */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--orange);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.875rem;
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+
+    .back-link:hover {
+      gap: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item img {
+        height: 220px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <header style="padding: 4rem 2rem; text-align: center;">
-        <h1 class="highlight">The Spirit of Turkana Gallery</h1>
-        <p>Optimized for 3G Networks (80% Weight Reduction)</p>
-        <a href="index.html" style="color: var(--main-color); text-decoration: none;">← Back to Portfolio</a>
-    </header>
 
-   <div class="gallery-grid">
-    <div class="gallery-item" data-aos="fade-up">
-        <img src="assets/assets:turkana-1.jpeg" alt="The Jade Sea at Sunrise" loading="lazy">
-        <div class="perf-badge">Optimized</div>
-        <div class="img-overlay"><span>Landscape</span></div>
+  <!-- ============================================================
+       NAVBAR — same as main portfolio
+       ============================================================ -->
+  <nav class="navbar" role="banner" aria-label="Main navigation">
+    <a href="index.html" aria-label="Back to portfolio">
+      <img src="assets/logo.png" alt="GMeipa Logo" class="nav-logo" />
+    </a>
+
+    <ul class="nav-links" role="list">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#contact" class="nav-cta nav-hire">Hire Me</a></li>
+    </ul>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span class="hbar"></span>
+      <span class="hbar"></span>
+      <span class="hbar"></span>
+    </button>
+  </nav>
+
+  <!-- Mobile nav -->
+  <div class="mobile-nav" id="mobile-nav" role="navigation">
+    <a href="index.html#about">About</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#contact" class="mobile-hire">Hire Me</a>
+  </div>
+
+  <!-- ============================================================
+       GALLERY HERO
+       ============================================================ -->
+  <header class="gallery-hero">
+    <div class="perf-pill">
+      <i class="fas fa-bolt"></i>
+      Optimised for 3G Networks — 80% Weight Reduction
     </div>
 
-    <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
-        <img src="assets/assets:turkana-2.jpeg" alt="Turkana Cultural Beadwork" loading="lazy">
-        <div class="perf-badge">Optimized</div>
-        <div class="img-overlay"><span>Tradition</span></div>
+    <h1>The Spirit of <span class="highlight">Turkana</span></h1>
+
+    <p>
+      A cinematic visual archive of the Turkana people and Lake Turkana, Kenya.
+      Each image was processed and lazy-loaded to deliver a high-definition experience
+      even on low-bandwidth mobile connections.
+    </p>
+
+    <a href="index.html" class="back-link">
+      <i class="fas fa-arrow-left"></i>
+      Back to Portfolio
+    </a>
+  </header>
+
+  <!-- ============================================================
+       GALLERY GRID
+       ============================================================ -->
+  <main class="gallery-section" aria-label="Photo gallery">
+
+    <div class="gallery-grid">
+
+      <!-- ── IMAGE 1 ── -->
+      <div class="gallery-item" data-aos="fade-up" onclick="openLightbox('assets/turkana-1.jpeg', 'The Jade Sea at Sunrise — Lake Turkana, Kenya')" role="button" tabindex="0" aria-label="View The Jade Sea at Sunrise">
+        <img src="assets/turkana-1.jpeg" alt="The Jade Sea at Sunrise — Lake Turkana" loading="lazy" />
+        <div class="perf-badge">Optimised</div>
+        <div class="gallery-overlay">
+          <h3>The Jade Sea at Sunrise</h3>
+          <p>Landscape · Lake Turkana</p>
+        </div>
+      </div>
+
+      <!-- ── IMAGE 2 ── -->
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="100" onclick="openLightbox('assets/turkana-2.jpeg', 'Turkana Cultural Beadwork — Tradition & Identity')" role="button" tabindex="0" aria-label="View Turkana Cultural Beadwork">
+        <img src="assets/turkana-2.jpeg" alt="Turkana Cultural Beadwork" loading="lazy" />
+        <div class="perf-badge">Optimised</div>
+        <div class="gallery-overlay">
+          <h3>Cultural Beadwork</h3>
+          <p>Tradition · Identity</p>
+        </div>
+      </div>
+
+      <!-- ── IMAGE 3 ── -->
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="150" onclick="openLightbox('assets/turkana-3.jpeg', 'Community Traditional Dance — Resilience & Spirit')" role="button" tabindex="0" aria-label="View Community Traditional Dance">
+        <img src="assets/turkana-3.jpeg" alt="Community Traditional Dance" loading="lazy" />
+        <div class="perf-badge">Optimised</div>
+        <div class="gallery-overlay">
+          <h3>Traditional Dance</h3>
+          <p>Community · Resilience</p>
+        </div>
+      </div>
+
+      <!-- ── IMAGE 4 ── -->
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="200" onclick="openLightbox('assets/turkana-4.jpeg', 'Fishermen on Lake Turkana — Daily Life')" role="button" tabindex="0" aria-label="View Fishermen on Lake Turkana">
+        <img src="assets/turkana-4.jpeg" alt="Fishermen on Lake Turkana" loading="lazy" />
+        <div class="perf-badge">Optimised</div>
+        <div class="gallery-overlay">
+          <h3>Fishermen of the Lake</h3>
+          <p>Daily Life · Livelihood</p>
+        </div>
+      </div>
+
+      <!-- ── IMAGE 5 ── -->
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="250" onclick="openLightbox('assets/turkana-5.jpeg', 'The Spirit of the Land — Turkana, Kenya')" role="button" tabindex="0" aria-label="View The Spirit of the Land">
+        <img src="assets/turkana-5.jpeg" alt="The Spirit of the Land — Turkana" loading="lazy" />
+        <div class="perf-badge">Optimised</div>
+        <div class="gallery-overlay">
+          <h3>The Spirit of the Land</h3>
+          <p>Heritage · Spirit</p>
+        </div>
+      </div>
+
     </div>
 
-    <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
-        <img src="assets/assets:turkana-3.jpeg" alt="Community Traditional Dance" loading="lazy">
-        <div class="perf-badge">Optimized</div>
-        <div class="img-overlay"><span>Resilience</span></div>
+    <!-- Tech note -->
+    <div style="margin-top: 3rem; text-align: center; padding: 1.5rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; max-width: 600px; margin-left: auto; margin-right: auto;" data-aos="fade-up">
+      <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.7;">
+        <span style="color: var(--orange); font-weight: 700;">⚡ Performance note:</span>
+        All images in this gallery are lazy-loaded using the browser-native <code style="background: var(--bg-base); padding: 2px 6px; border-radius: 4px; font-size: 0.78rem; color: var(--orange-light);">loading="lazy"</code> attribute and the
+        <code style="background: var(--bg-base); padding: 2px 6px; border-radius: 4px; font-size: 0.78rem; color: var(--orange-light);">Intersection Observer API</code>.
+        Initial page weight is reduced by ~80% — images only load as they enter the viewport,
+        keeping the experience smooth even on 3G connections.
+      </p>
     </div>
 
-    <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
-        <img src="assets/assets:turkana-4.jpeg" alt="Fishermen on Lake Turkana" loading="lazy">
-        <div class="perf-badge">Optimized</div>
-        <div class="img-overlay"><span>Daily Life</span></div>
-    </div>
+  </main>
 
-    <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
-        <img src="assets/assets:turkana-5.jpeg" alt="The Spirit of the Land" loading="lazy">
-        <div class="perf-badge">Optimized</div>
-        <div class="img-overlay"><span>Spirit</span></div>
+  <!-- ============================================================
+       LIGHTBOX
+       ============================================================ -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">&times;</button>
+    <img id="lightbox-img" src="" alt="" />
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+  </div>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer>
+    <div class="footer-inner">
+      <img src="assets/logo.png" alt="GMeipa Logo" class="footer-logo" />
+      <p>&copy; 2026 George Moruita Eipa. Built with passion in Kenya 🇰🇪</p>
+      <p class="footer-sub">Full-Stack Software Engineer · Nairobi, Kenya</p>
     </div>
-</div>
-   
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    // AOS
+    AOS.init({ duration: 800, once: true, offset: 60 });
+
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    hamburger?.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('active');
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Lightbox
+    const lightbox      = document.getElementById('lightbox');
+    const lightboxImg   = document.getElementById('lightbox-img');
+    const lightboxCap   = document.getElementById('lightbox-caption');
+    const lightboxClose = document.getElementById('lightbox-close');
+
+    function openLightbox(src, caption) {
+      lightboxImg.src         = src;
+      lightboxImg.alt         = caption;
+      lightboxCap.textContent = caption;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+      lightboxImg.src = '';
+    }
+
+    lightboxClose?.addEventListener('click', closeLightbox);
+
+    // Close on backdrop click
+    lightbox?.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Keyboard support for gallery items
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          item.click();
+        }
+      });
+    });
+  </script>
+
 </body>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init();
-</script>
 </html>
