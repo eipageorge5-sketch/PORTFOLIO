@@ -90,9 +90,6 @@ portfolio/
 │   ├── logo.png            # GMeipa personal logo
 │   ├── turkana-1.jpeg      # Hero background
 │   ├── George.jpeg         # Profile image
-│   ├── turkana-3.jpeg      # Gallery image
-│   ├── turkana-4.jpeg      # Gallery image
-│   └── turkana-5.jpeg      # About section image
 └── README.md
 ```
 
