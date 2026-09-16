@@ -1,4 +1,4 @@
-# George Moruita Eipa — Developer Portfolio
+# George Moruita Eipa - Developer Portfolio
 
 > Full-Stack Software Engineer · Kenya 🇰🇪 · Building scalable SaaS platforms, RESTful APIs, and high-performance web applications.
 
@@ -11,13 +11,13 @@
 
 ---
 
-## 📸 Preview
+## Preview
 
 > **[→ View Live Portfolio](eipageorge5-sketch.github.io/PORTFOLIO/)**
 
 ---
 
-## 👋 About This Repository
+## About This Repository
 
 This is the source code for my personal developer portfolio — a hand-coded, performance-first website built without any JavaScript framework. It showcases my projects, technical skills, work experience, and background as a Full-Stack Software Engineer based in Kenya.
 
@@ -25,7 +25,7 @@ The portfolio is designed to reflect who I actually am as an engineer: someone w
 
 ---
 
-## 🚀 Featured Projects
+## Featured Projects
 
 ### [The Spirit of Turkana](https://eipageorge5-sketch.github.io/spirit-of-turkana/)
 Cinematic documentary web experience preserving East African heritage. Built with a lazy-loading image/video pipeline using the Intersection Observer API — reduced initial page weight by 60% while maintaining 60fps scroll performance on 3G networks.
@@ -72,7 +72,7 @@ pooling via Prisma.
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
 | Category | Technologies |
 |---|---|
@@ -87,7 +87,7 @@ pooling via Prisma.
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```
 portfolio/
@@ -104,7 +104,7 @@ portfolio/
 
 ---
 
-## ⚡ Performance Notes
+## Performance Notes
 
 This portfolio is built with performance as a first-class concern — not an afterthought.
 
@@ -117,7 +117,7 @@ This portfolio is built with performance as a first-class concern — not an aft
 
 ---
 
-## 🌐 Hosting & Deployment
+## Hosting & Deployment
 
 This portfolio is deployed on **GitHub Pages** — free, fast, and version-controlled.
 
@@ -129,7 +129,7 @@ For serious web projects — especially WordPress sites, SaaS dashboards, and cl
 
 ---
 
-## 🏃 Running Locally
+## Running Locally
 
 No build tools or Node.js required.
 
@@ -148,7 +148,7 @@ python3 -m http.server 3000
 
 ---
 
-## 📬 Contact
+## Contact
 
 I'm currently available for **freelance work**, **contract projects**, and **full-time roles**.
 
@@ -163,7 +163,7 @@ I'm currently available for **freelance work**, **contract projects**, and **ful
 
 ---
 
-## 📄 License
+## License
 
 This portfolio's source code is open for reference and learning.
 Please do not directly copy and deploy it as your own portfolio without meaningful changes.
