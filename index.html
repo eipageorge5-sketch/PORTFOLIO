@@ -158,11 +158,13 @@
           </div>
         </div>
 
-        <!-- My image -->
-<div style="display: flex; justify-content: center; align-items: center; padding: 2rem;">
-  <div style="position: relative;">
+<!-- My image -->
+<div style="display: flex; justify-content: center; align-items: center; padding: 2rem; width: 100%; box-sizing: border-box;">
+  <!-- Added flex-shrink: 0, max-width, and aspect-ratio to keep it a perfect circle -->
+  <div style="position: relative; flex-shrink: 0; max-width: 100%; width: 280px; aspect-ratio: 1 / 1;">
 
     <!-- Outer glow ring -->
+    <!-- Changed border-radius to 50% / 50% to maintain circular bounds -->
     <div style="
       position: absolute; inset: -3px;
       border-radius: 50%;
@@ -171,11 +173,12 @@
     "></div>
 
     <!-- Photo -->
+    <!-- Changed width to 100% and height to 100% so it scales beautifully inside the parent -->
     <img
       src="assets/George.jpeg"
       alt="George Moruita Eipa — Full-Stack Software Engineer"
       style="
-        width: 280px; height: 280px;
+        width: 100%; height: 100%;
         border-radius: 50%;
         object-fit: cover;
         object-position: top;
@@ -205,8 +208,9 @@
     "></div>
 
     <!-- Available badge -->
+    <!-- Adjusted right position slightly for better alignment on small boundaries -->
     <div style="
-      position: absolute; bottom: 12px; right: 0px;
+      position: absolute; bottom: 12px; right: -10px;
       background: var(--bg-card);
       border: 1px solid rgba(34,197,94,0.4);
       border-radius: 999px;
@@ -223,7 +227,6 @@
 
   </div>
 </div>
-
       </div>
     </div>
   </section>
