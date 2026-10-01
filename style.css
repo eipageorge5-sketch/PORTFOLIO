@@ -1330,3 +1330,121 @@ textarea:focus {
     max-width: 100%;
   }
 }
+
+/* ================================================================
+   ABOUT IMAGE — Avatar
+   ================================================================ */
+
+.about-img-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.avatar-wrap {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  flex-shrink: 0;
+}
+
+.avatar-glow-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--orange), #fb923c 60%, #fbbf24);
+  z-index: 0;
+}
+
+.avatar-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  position: relative;
+  z-index: 1;
+  border: 4px solid var(--bg-base);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.avatar-photo:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 40px var(--orange-glow);
+}
+
+.avatar-ring-1 {
+  position: absolute;
+  inset: -16px;
+  border-radius: 50%;
+  border: 1px solid rgba(249,115,22,0.2);
+  pointer-events: none;
+}
+
+.avatar-ring-2 {
+  position: absolute;
+  inset: -32px;
+  border-radius: 50%;
+  border: 1px dashed rgba(249,115,22,0.1);
+  pointer-events: none;
+}
+
+.avatar-badge {
+  position: absolute;
+  bottom: 12px;
+  right: -10px;
+  background: var(--bg-card);
+  border: 1px solid rgba(34,197,94,0.4);
+  border-radius: 999px;
+  padding: 5px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #86efac;
+  z-index: 2;
+  white-space: nowrap;
+}
+
+.avatar-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 6px rgba(34,197,94,0.7);
+}
+
+/* ── Mobile fixes ── */
+@media (max-width: 768px) {
+  .about-img-col {
+    padding: 1rem 0;
+    width: 100%;
+  }
+
+  .avatar-wrap {
+    width: 200px;
+    height: 200px;
+  }
+
+  /* Hide decorative rings on mobile — they cause overflow */
+  .avatar-ring-1,
+  .avatar-ring-2 {
+    display: none;
+  }
+
+  .avatar-badge {
+    right: -5px;
+    font-size: 0.65rem;
+    padding: 4px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .avatar-wrap {
+    width: 160px;
+    height: 160px;
+  }
+}
