@@ -118,119 +118,48 @@
     </div>
   </section>
 
-  <!-- ============================================================
-       ABOUT
-       ============================================================ -->
-  <section id="about" style="padding: 6rem 5%;" class="grid-bg">
-    <div style="max-width: 1100px; margin: auto;">
+<div class="about-grid" data-aos="fade-up">
 
-      <div style="text-align: center; margin-bottom: 3rem;" data-aos="fade-up">
-        <div class="section-label" style="margin-bottom: 1rem;">About Me</div>
-        <h2 class="section-title" style="margin-bottom: 0;">
-          Code. Culture. <span class="highlight">Impact.</span>
-        </h2>
-      </div>
+  <!-- Text column -->
+  <div>
+    <p style="color: var(--text-muted); margin-bottom: 1.2rem; line-height: 1.8;">
+      I'm a Full-Stack Software Engineer with a strong foundation in building scalable web applications, RESTful APIs, and database architectures. My journey into tech started with a curiosity for how the digital world can document the physical one — from storytelling in the Turkana region to engineering production-ready SaaS systems.
+    </p>
+    <p style="color: var(--text-muted); margin-bottom: 1.2rem; line-height: 1.8;">
+      I'm proficient in TypeScript, modern JavaScript, and relational databases, with hands-on experience developing multi-tenant SaaS platforms, secure authentication systems, and asynchronous backend workflows.
+    </p>
+    <p style="color: var(--text-muted); line-height: 1.8;">
+      Currently studying ICT at Eldoret National Polytechnic and advancing my skills through the Power Learn Project Software Engineering programme — while shipping real products for real clients.
+    </p>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;" data-aos="fade-up">
-
-        <div>
-          <p style="color: var(--text-muted); margin-bottom: 1.2rem; line-height: 1.8;">
-            I'm a Full-Stack Software Engineer with a strong foundation in building scalable web applications, RESTful APIs, and database architectures. My journey into tech started with a curiosity for how the digital world can document the physical one — from storytelling in the Turkana region to engineering production-ready SaaS systems.
-          </p>
-          <p style="color: var(--text-muted); margin-bottom: 1.2rem; line-height: 1.8;">
-            I'm proficient in TypeScript, modern JavaScript, and relational databases, with hands-on experience developing multi-tenant SaaS platforms, secure authentication systems, and asynchronous backend workflows.
-          </p>
-          <p style="color: var(--text-muted); line-height: 1.8;">
-            Currently studying ICT at Eldoret National Polytechnic and advancing my skills through the Power Learn Project Software Engineering programme — while shipping real products for real clients.
-          </p>
-
-          <div style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
-            <a href="https://github.com/eipageorge5-sketch" target="_blank" rel="noopener noreferrer" class="btn-outline" style="font-size: 0.82rem; padding: 9px 18px;">
-              <i class="fab fa-github"></i> GitHub
-            </a>
-            <a href="https://www.linkedin.com/in/george-eipa-93ab4b371/" target="_blank" rel="noopener noreferrer" class="btn-outline" style="font-size: 0.82rem; padding: 9px 18px;">
-              <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <!-- CV DOWNLOAD LINK -->
-            <a href="https://docs.google.com/document/d/1g22cJxwL6jYe3GOyxX09JKfnIb-z_0kpujfTgkS44Q8/edit?usp=sharing" download class="btn-primary" style="font-size: 0.82rem; padding: 9px 18px;">
-              <i class="fas fa-download"></i> Download CV
-            </a>
-          </div>
-        </div>
-
-<!-- My image -->
-<div style="display: flex; justify-content: center; align-items: center; padding: 2rem; width: 100%; box-sizing: border-box;">
-  <!-- Added flex-shrink: 0, max-width, and aspect-ratio to keep it a perfect circle -->
-  <div style="position: relative; flex-shrink: 0; max-width: 100%; width: 280px; aspect-ratio: 1 / 1;">
-
-    <!-- Outer glow ring -->
-    <!-- Changed border-radius to 50% / 50% to maintain circular bounds -->
-    <div style="
-      position: absolute; inset: -3px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--orange), #fb923c 60%, #fbbf24);
-      z-index: 0;
-    "></div>
-
-    <!-- Photo -->
-    <!-- Changed width to 100% and height to 100% so it scales beautifully inside the parent -->
-    <img
-      src="assets/George.jpeg"
-      alt="George Moruita Eipa — Full-Stack Software Engineer"
-      style="
-        width: 100%; height: 100%;
-        border-radius: 50%;
-        object-fit: cover;
-        object-position: top;
-        display: block;
-        position: relative;
-        z-index: 1;
-        border: 4px solid var(--bg-base);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      "
-      loading="lazy"
-      onmouseover="this.style.transform='scale(1.04)'; this.style.boxShadow='0 0 40px var(--orange-glow)'"
-      onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'"
-    />
-
-    <!-- Decorative orbiting rings -->
-    <div style="
-      position: absolute; inset: -16px;
-      border-radius: 50%;
-      border: 1px solid rgba(249,115,22,0.2);
-      pointer-events: none;
-    "></div>
-    <div style="
-      position: absolute; inset: -32px;
-      border-radius: 50%;
-      border: 1px dashed rgba(249,115,22,0.1);
-      pointer-events: none;
-    "></div>
-
-    <!-- Available badge -->
-    <!-- Adjusted right position slightly for better alignment on small boundaries -->
-    <div style="
-      position: absolute; bottom: 12px; right: -10px;
-      background: var(--bg-card);
-      border: 1px solid rgba(34,197,94,0.4);
-      border-radius: 999px;
-      padding: 5px 12px;
-      display: flex; align-items: center; gap: 6px;
-      font-size: 0.72rem; font-weight: 600;
-      color: #86efac;
-      z-index: 2;
-      white-space: nowrap;
-    ">
-      <span style="width:7px; height:7px; border-radius:50%; background:#22c55e; box-shadow: 0 0 6px rgba(34,197,94,0.7);"></span>
-      Available for hire
+    <div style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
+      <a href="https://github.com/eipageorge5-sketch" target="_blank" rel="noopener noreferrer" class="btn-outline" style="font-size: 0.82rem; padding: 9px 18px;">
+        <i class="fab fa-github"></i> GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/george-eipa-93ab4b371/" target="_blank" rel="noopener noreferrer" class="btn-outline" style="font-size: 0.82rem; padding: 9px 18px;">
+        <i class="fab fa-linkedin"></i> LinkedIn
+      </a>
+      <a href="https://docs.google.com/document/d/1g22cJxwL6jYe3GOyxX09JKfnIb-z_0kpujfTgkS44Q8/edit?usp=sharing" download class="btn-primary" style="font-size: 0.82rem; padding: 9px 18px;">
+        <i class="fas fa-download"></i> Download CV
+      </a>
     </div>
-
   </div>
-</div>
-      </div>
-    </div>
-  </section>
 
+  <!-- Image column -->
+  <div class="about-img-col">
+    <div class="avatar-wrap">
+
+      <!-- Outer glow ring -->
+      <div class="avatar-glow-ring"></div>
+
+      <!-- Photo -->
+      <img
+        src="assets/George.jpeg"
+        alt="George Moruita Eipa — Full-Stack Software Engineer"
+        class="avatar-photo"
+        loading="lazy"
+
+  
   <!-- ============================================================
        TRUST SIGNALS
        ============================================================ -->
