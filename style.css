@@ -30,6 +30,7 @@
 }
 
 
+
 /* ================================================================
    2. RESET & BASE
    ================================================================ */
@@ -42,6 +43,11 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -1189,6 +1195,42 @@ textarea:focus {
   .hamburger { display: flex; }
   .nav-links  { display: none; }
   .nav-hire   { display: none; }
+
+  html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.hero-content {
+  padding: 0 5%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.hero-content h1 {
+  font-size: 2.2rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.hero-content h3 {
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+.hero-content p {
+  font-size: 0.9rem;
+  max-width: 100%;
+}
+
+.stat-card h3 {
+  font-size: 1.2rem;
+}
+
+.stat-card p {
+  font-size: 0.65rem;
+}
 
   /* Stack contact grid */
   .contact-grid {
