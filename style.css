@@ -1201,6 +1201,43 @@ textarea:focus {
   overflow-x: hidden;
 }
 
+/* Fix about section stacking on mobile */
+.about-grid {
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+/* Fix avatar ring cutoff on mobile */
+.about-image-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: transparent;
+  overflow: visible;
+  padding: 2rem 0;
+}
+
+.about-image-wrap > div {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-image-wrap img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* Shrink decorative rings to fit screen */
+.about-image-wrap > div > div {
+  display: none;
+}
+  
 .hero-content {
   padding: 0 5%;
   max-width: 100%;
@@ -1264,6 +1301,11 @@ textarea:focus {
   .hero-cta-group {
     flex-direction: column;
   }
+
+  .about-image-wrap img {
+  width: 160px;
+  height: 160px;
+}
 
   .btn-primary,
   .btn-outline {
