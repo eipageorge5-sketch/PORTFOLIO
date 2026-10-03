@@ -1201,6 +1201,11 @@ textarea:focus {
   overflow-x: hidden;
 }
 
+  .experience-grid {
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
 /* Fix about section stacking on mobile */
 .about-grid {
   grid-template-columns: 1fr;
